@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 export interface FiltersProps {
+    filters: Array<string>
     
 }
  
@@ -15,7 +16,9 @@ class Filters extends React.Component<FiltersProps, FiltersState> {
     }
     render() { 
         return (  <>
-         {this.state.title}
+         {
+             this.props.filters.map(eachFilter => (<p>{eachFilter}</p>))
+         }
         </>);
     }
 }

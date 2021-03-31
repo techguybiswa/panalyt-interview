@@ -1,6 +1,6 @@
 export const getSalaryInNumber = (salary: string) => {
-  let salaryString = salary.replace("$", "");
-  let salaryInInt = parseFloat(salaryString);
+  let salaryStringSanitized = salary.replace("$", "");
+  let salaryInInt = parseFloat(salaryStringSanitized);
   return salaryInInt;
 };
 

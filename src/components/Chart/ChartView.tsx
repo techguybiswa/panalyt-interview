@@ -1,5 +1,5 @@
 import * as React from "react";
-import { EmployeeDataObject } from "../App";
+import { EmployeeDataObject } from "../../App";
 import {CustomTooltip} from "./CustomTooltip"
 import {
   BarChart,
@@ -15,7 +15,6 @@ import {
 
 export interface ChartViewProps {
   data: Array<EmployeeDataObject>;
-  filters: Array<string>;
 }
 
 export interface ChartViewState {

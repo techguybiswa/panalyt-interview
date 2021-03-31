@@ -1,8 +1,8 @@
 import React from "react";
 import "./App.css";
 import AppLayout from "./Layout/Layout";
-import TableView from "./components/TableView";
-import ChartView from "./components/ChartView";
+import TableView from "./components/Table/TableView";
+import ChartView from "./components/Chart/ChartView";
 import Filters from "./components/Filters";
 
 import { EmployeeData } from "./assets/EmployeeData";
@@ -81,11 +81,10 @@ class App extends React.Component<AppProps, AppState> {
             <TabPane tab="Chart View" key="1">
               <ChartView
                 data={this.state.filteredLocationWiseDataArray}
-                filters={this.state.listOfFilters}
               />
             </TabPane>
             <TabPane tab="Table View" key="2">
-              <TableView />
+              <TableView  data={this.state.filteredLocationWiseDataArray}/>
             </TabPane>
           </Tabs>
         </div>

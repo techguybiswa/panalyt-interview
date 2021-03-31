@@ -1,12 +1,13 @@
 export const getSalaryInNumber = (salary: string) => {
   let salaryStringSanitized = salary.replace("$", "");
-  let salaryInInt = parseFloat(salaryStringSanitized);
-  return salaryInInt;
+  let salaryInNumber = parseFloat(salaryStringSanitized);
+  return salaryInNumber;
 };
 
 export const calculatePercentageChange = (
   currSalary: number,
   prevSalary: number
 ) => {
-  return (((currSalary - prevSalary) / currSalary) * 100).toFixed(2);
+  let percentageChange = (((currSalary - prevSalary) / currSalary) * 100).toFixed(2)
+  return parseFloat(percentageChange);
 };

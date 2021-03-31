@@ -1,5 +1,5 @@
 import { getSalaryInNumber, calculatePercentageChange } from "../helper/helper";
-import {EmployeeDataObject} from "../App"
+import { EmployeeDataObject } from "../App";
 export interface MapOfLocation {
   [key: string]: EmployeeDataObject;
 }
@@ -44,12 +44,23 @@ export const calculateDelta = (locationWiseDataMap: MapOfLocation) => {
 export const convertToArray = (locationWiseDataMap: MapOfLocation) => {
   let employeeDataArray: Array<EmployeeDataObject> = [];
   Object.keys(locationWiseDataMap).map((eachLocation) => {
-    employeeDataArray.push(locationWiseDataMap[eachLocation]);
+    let { location, currSalary, prevSalary, delta } = locationWiseDataMap[
+      eachLocation
+    ];
+    let eachLocationData = {
+      location: location,
+      prevSalary: parseFloat(prevSalary.toFixed(2)),
+      currSalary: parseFloat(currSalary.toFixed(2)),
+      delta,
+    };
+    employeeDataArray.push(eachLocationData);
   });
   return employeeDataArray;
 };
 
-export const getFilters = (locationWiseDataArray : Array<EmployeeDataObject>) => {
-  let filters = locationWiseDataArray.map(eachData => eachData.location)
-  return filters
-}
+export const getFilters = (
+  locationWiseDataArray: Array<EmployeeDataObject>
+) => {
+  let filters = locationWiseDataArray.map((eachData) => eachData.location);
+  return filters;
+};

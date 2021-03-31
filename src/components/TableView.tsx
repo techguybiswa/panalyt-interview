@@ -1,15 +1,15 @@
 import * as React from 'react';
 
-export interface TableProps {
+export interface TableViewProps {
     
 }
  
-export interface TableState {
+export interface TableViewState {
     title: string
 }
  
-class Table extends React.Component<TableProps, TableState> {
-    constructor(props: TableProps) {
+class TableView extends React.Component<TableViewProps, TableViewState> {
+    constructor(props: TableViewProps) {
         super(props);
         this.state = { title: "This is table"  };
     }
@@ -21,4 +21,4 @@ class Table extends React.Component<TableProps, TableState> {
     }
 }
  
-export default Table;
+export default TableView;

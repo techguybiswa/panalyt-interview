@@ -25,39 +25,62 @@ export interface AppProps {}
 
 export interface AppState {
   locationWiseDataArray: Array<EmployeeDataObject>;
-  filters: Array<string>;
+  filteredLocationWiseDataArray: Array<EmployeeDataObject>;
+  listOfFilters: Array<string>;
+  selectedFilters: Array<string>
 }
 
 class App extends React.Component<AppProps, AppState> {
   constructor(props: AppProps) {
     super(props);
-    this.state = { locationWiseDataArray: [], filters: [] };
+    this.state = {
+      locationWiseDataArray: [],
+      listOfFilters: [],
+      filteredLocationWiseDataArray: [],
+      selectedFilters: []
+    };
   }
-  applyFilters = (filters: Array<string>) => {
+  componentDidUpdate(prevProps : any, prevState: any) {
+    if (this.state.selectedFilters.length !== prevState.selectedFilters.length) {
+      let filteredLocationWiseDataArray = this.state.locationWiseDataArray.filter(
+        (eachData) => {
+          return this.state.selectedFilters.indexOf(eachData.location) != -1;
+        }
+      );
+      this.setState({
+        filteredLocationWiseDataArray,
+      });
+    }
+  }
+  applyFilters = (selectedFilters: Array<string>) => {
     this.setState({
-      filters
-    })
+      selectedFilters,
+    });
   };
   componentDidMount = () => {
     let locationMapOnSalary = convertToLocationMap(EmployeeData);
     let locationMapWithDelta = calculateDelta(locationMapOnSalary);
     let locationWiseDataArray = convertToArray(locationMapWithDelta);
-    let filters = getFilters(locationWiseDataArray);
+    let listOfFilters = getFilters(locationWiseDataArray);
     this.setState({
       locationWiseDataArray,
-      filters,
+      listOfFilters,
     });
+    this.applyFilters(["China", "Malaysia"]);
   };
   render() {
     return (
       <div className="card-container">
-        <Filters filters={this.state.filters} />
+        <Filters filters={this.state.listOfFilters} />
         <Tabs type="card">
           <TabPane tab="Bar Chart" key="1">
-            <BarChart data={this.state.locationWiseDataArray} filters={this.state.filters}/>
+            <BarChart
+              data={this.state.filteredLocationWiseDataArray}
+              filters={this.state.listOfFilters}
+            />
           </TabPane>
           <TabPane tab="Table" key="2">
-            <Table/>
+            <Table />
           </TabPane>
         </Tabs>
       </div>

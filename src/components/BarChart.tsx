@@ -16,6 +16,7 @@ class BarChart extends React.Component<BarChartProps, BarChartState> {
     this.state = { title: "This is bar chart" };
   }
 
+
   render() {
     return (
       <>

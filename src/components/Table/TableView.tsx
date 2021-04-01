@@ -2,6 +2,8 @@ import * as React from "react";
 import { EmployeeDataObject } from "../../App";
 import ViewDelta from "./ViewDelta";
 import { getTotalSalary, getTotalDelta } from "../../utils/utils";
+import { css } from "@emotion/css";
+
 export interface TableViewProps {
   data: Array<EmployeeDataObject>;
 }
@@ -22,14 +24,14 @@ class TableView extends React.Component<TableViewProps, TableViewState> {
       <>
         <table style={{ width: "100%" }}>
           <tr
-            style={{
-              background: "#04A599",
-              height: "60px",
-              color: "white",
-              fontSize: "18px",
-              textAlign: "center",
-              fontFamily: "Helvetica",
-            }}
+            className={css`
+              background: #04a599;
+              height: 60px;
+              color: white;
+              font-size: 18px;
+              text-align: center;
+              font-family: "Helvetica";
+            `}
           >
             <th>Location</th>
             <th>Salary</th>
@@ -37,13 +39,13 @@ class TableView extends React.Component<TableViewProps, TableViewState> {
           </tr>
           {this.props.data.map((eachData) => (
             <tr
-              style={{
-                textAlign: "center",
-                color: "grey",
-                fontSize: "18px",
-                borderBottom: "1px solid rgba(255, 0, 0, 0.2)",
-                height: "60px",
-              }}
+              className={css`
+                text-align: center;
+                color: grey;
+                font-size: 18px;
+                border-bottom: 1px solid rgba(255, 0, 0, 0.2);
+                height: 60px;
+              `}
             >
               <td>{eachData.location}</td>
               <td>${eachData.currSalary.toLocaleString("en-US")}</td>
@@ -53,13 +55,13 @@ class TableView extends React.Component<TableViewProps, TableViewState> {
             </tr>
           ))}
           <tr
-            style={{
-              textAlign: "center",
-              color: "grey",
-              fontSize: "18px",
-              borderBottom: "1px solid rgba(255, 0, 0, 0.2)",
-              height: "60px",
-            }}
+            className={css`
+              text-align: center;
+              color: grey;
+              font-size: 18px;
+              border-bottom: 1px solid rgba(255, 0, 0, 0.2);
+              height: 60px;
+            `}
           >
             <td>
               <b>Total:</b>{" "}

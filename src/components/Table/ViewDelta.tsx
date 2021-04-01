@@ -1,5 +1,7 @@
 import * as React from "react";
 import { getSign, getBackgroundColor } from "../../helper/helper";
+import { css } from "@emotion/css";
+
 export interface ViewDeltaProps {
   delta?: number;
 }
@@ -16,15 +18,15 @@ class ViewDelta extends React.Component<ViewDeltaProps, ViewDeltaState> {
 
     return (
       <div
-        style={{
-          backgroundColor: `${getBackgroundColor(delta)}`,
-          borderRadius: "28px",
-          color: "black",
-          height: "40px",
-          paddingTop: "5px",
-          margin: "0 auto",
-          maxWidth: "150px",
-        }}
+        className={css`
+          background-color: ${getBackgroundColor(delta)};
+          border-radius: 28px;
+          color: black;
+          height: 40px;
+          padding-top: 5px;
+          margin: 0 auto;
+          max-width: 150px;
+        `}
       >
         {getSign(delta)}
         {delta}

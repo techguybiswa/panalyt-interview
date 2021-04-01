@@ -6,6 +6,7 @@ import ChartView from "./components/Chart/ChartView";
 import Filters from "./components/Filters";
 
 import { EmployeeData } from "./assets/EmployeeData";
+import { css } from '@emotion/css'
 
 import {
   convertToLocationMap,
@@ -70,8 +71,12 @@ class App extends React.Component<AppProps, AppState> {
   render() {
     return (
       <AppLayout>
-        <div className="container">
-          <div style={{ marginBottom: "30px" }}>
+        <div>
+          <div
+            className={css`
+              margin-bottom: 30px;
+            `}
+          >
             <Filters
               filters={this.state.listOfFilters}
               applyFilters={this.applyFilters}

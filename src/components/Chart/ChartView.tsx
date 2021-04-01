@@ -12,6 +12,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import { css } from '@emotion/css'
 
 export interface ChartViewProps {
   data: Array<EmployeeDataObject>;
@@ -30,7 +31,7 @@ class ChartView extends React.Component<ChartViewProps, ChartViewState> {
   render() {
     return (
       <>
-        <div style={{ width: "100%" }}>
+        <div className={css`width: 100%`}>
           <ResponsiveContainer width="100%" height={400}>
             <BarChart width={1200} height={700} data={this.props.data}>
               <CartesianGrid strokeDasharray="3 3" />

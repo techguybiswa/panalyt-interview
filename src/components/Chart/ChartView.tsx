@@ -1,6 +1,6 @@
 import * as React from "react";
 import { EmployeeDataObject } from "../../App";
-import {CustomTooltip} from "./CustomTooltip"
+import { CustomTooltip } from "./CustomTooltip";
 import {
   BarChart,
   Bar,
@@ -37,7 +37,7 @@ class ChartView extends React.Component<ChartViewProps, ChartViewState> {
               <XAxis dataKey="location" />
               <YAxis yAxisId="left" orientation="left" stroke="#8884d8" />
               <YAxis yAxisId="right" orientation="right" stroke="#82ca9d" />
-              <Tooltip content={<CustomTooltip/>}/>
+              <Tooltip content={<CustomTooltip />} />
               <Legend />
               <Bar yAxisId="left" dataKey="prevSalary" fill="#8884d8" />
               <Bar yAxisId="right" dataKey="currSalary" fill="#82ca9d" />

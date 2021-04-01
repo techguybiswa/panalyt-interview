@@ -58,7 +58,6 @@ class App extends React.Component<AppProps, AppState> {
   };
   componentDidMount = () => {
     let locationMapOnSalary = convertToLocationMap(EmployeeData);
-    console.log("locationMapOnSalary " , locationMapOnSalary)
     let locationMapWithDelta = calculateDelta(locationMapOnSalary);
     let locationWiseDataArray = convertToArray(locationMapWithDelta);
     let listOfFilters = getFilters(locationWiseDataArray);
@@ -80,12 +79,10 @@ class App extends React.Component<AppProps, AppState> {
           </div>
           <Tabs type="card">
             <TabPane tab="Chart View" key="1">
-              <ChartView
-                data={this.state.filteredLocationWiseDataArray}
-              />
+              <ChartView data={this.state.filteredLocationWiseDataArray} />
             </TabPane>
             <TabPane tab="Table View" key="2">
-              <TableView  data={this.state.filteredLocationWiseDataArray}/>
+              <TableView data={this.state.filteredLocationWiseDataArray} />
             </TabPane>
           </Tabs>
         </div>

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { EmployeeDataObject } from "../../App";
 import ViewDelta from "./ViewDelta";
-import {getTotalSalary, getTotalDelta} from "../../utils/utils"
+import { getTotalSalary, getTotalDelta } from "../../utils/utils";
 export interface TableViewProps {
   data: Array<EmployeeDataObject>;
 }
@@ -17,7 +17,7 @@ class TableView extends React.Component<TableViewProps, TableViewState> {
   }
 
   render() {
-    const {data} = this.props;
+    const { data } = this.props;
     return (
       <>
         <table style={{ width: "100%" }}>
@@ -61,9 +61,13 @@ class TableView extends React.Component<TableViewProps, TableViewState> {
               height: "60px",
             }}
           >
-            <td><b>Total:</b> </td>
+            <td>
+              <b>Total:</b>{" "}
+            </td>
             <td>{getTotalSalary(data)}</td>
-            <td><ViewDelta delta={getTotalDelta(data)} /></td>
+            <td>
+              <ViewDelta delta={getTotalDelta(data)} />
+            </td>
           </tr>
         </table>
       </>

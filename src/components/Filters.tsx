@@ -3,8 +3,7 @@ import { Checkbox, Row, Col, Button } from "antd";
 
 export interface FiltersProps {
   filters: Array<string>;
-  applyFilters: Function
-
+  applyFilters: Function;
 }
 
 export interface FiltersState {
@@ -18,7 +17,7 @@ class Filters extends React.Component<FiltersProps, FiltersState> {
   }
 
   onChange = (checkedValues: any) => {
-    this.props.applyFilters(checkedValues)
+    this.props.applyFilters(checkedValues);
   };
   render() {
     return (
@@ -33,7 +32,6 @@ class Filters extends React.Component<FiltersProps, FiltersState> {
             ))}
           </Row>
         </Checkbox.Group>
-      
       </>
     );
   }

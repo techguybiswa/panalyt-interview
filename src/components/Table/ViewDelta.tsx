@@ -1,5 +1,5 @@
 import * as React from "react";
-import {getSign, getBackgroundColor} from "../../helper/helper"
+import { getSign, getBackgroundColor } from "../../helper/helper";
 export interface ViewDeltaProps {
   delta?: number;
 }
@@ -23,10 +23,11 @@ class ViewDelta extends React.Component<ViewDeltaProps, ViewDeltaState> {
           height: "40px",
           paddingTop: "5px",
           margin: "0 auto",
-          maxWidth: "200px"
+          maxWidth: "150px",
         }}
       >
-        {getSign(delta)}{delta}
+        {getSign(delta)}
+        {delta}
       </div>
     );
   }

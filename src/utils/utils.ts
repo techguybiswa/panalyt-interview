@@ -68,17 +68,16 @@ export const getFilters = (
   return filters;
 };
 
-
-export const getTotalSalary = (data : Array<EmployeeDataObject>) => {
+export const getTotalSalary = (data: Array<EmployeeDataObject>) => {
   let totalSalary = 0;
   data.map((eachData) => {
     totalSalary += eachData.currSalary;
   });
-  totalSalary = parseFloat(totalSalary.toFixed(2))
+  totalSalary = parseFloat(totalSalary.toFixed(2));
   return `$${totalSalary.toLocaleString("en-US")}`;
 };
 
-export const getTotalDelta = (data : Array<EmployeeDataObject>) => {
+export const getTotalDelta = (data: Array<EmployeeDataObject>) => {
   let totalDelta = 0;
   data.map((eachData) => {
     totalDelta += eachData.delta || 0;

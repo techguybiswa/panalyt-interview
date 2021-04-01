@@ -4,9 +4,12 @@ export interface MapOfLocation {
   [key: string]: EmployeeDataObject;
 }
 export interface DataObjectInJson {
+  firstName: string;
+  lastName: string;
   location: string;
   prevSalary: string;
   currSalary: string;
+  org: string;
 }
 
 export const convertToLocationMap = (jsonData: Array<DataObjectInJson>) => {

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { EmployeeDataObject } from "../../App";
-import ViewDelta from "./ViewDelta"
+import ViewDelta from "./ViewDelta";
 export interface TableViewProps {
   data: Array<EmployeeDataObject>;
 }
@@ -14,7 +14,25 @@ class TableView extends React.Component<TableViewProps, TableViewState> {
     super(props);
     this.state = { title: "This is table" };
   }
+  getTotalSalary = (data : Array<EmployeeDataObject>) => {
+    let totalSalary = 0;
+    data.map((eachData) => {
+      totalSalary += eachData.currSalary;
+    });
+    totalSalary = parseFloat(totalSalary.toFixed(2))
+    return `$${totalSalary.toLocaleString("en-US")}`;
+  };
+
+  getTotalDelta = (data : Array<EmployeeDataObject>) => {
+    let totalDelta = 0;
+    data.map((eachData) => {
+      totalDelta += eachData.delta || 0;
+    });
+  
+    return parseFloat(totalDelta.toFixed(2));
+  };
   render() {
+    const {data} = this.props;
     return (
       <>
         <table style={{ width: "100%" }}>
@@ -44,9 +62,24 @@ class TableView extends React.Component<TableViewProps, TableViewState> {
             >
               <td>{eachData.location}</td>
               <td>${eachData.currSalary.toLocaleString("en-US")}</td>
-              <td><ViewDelta delta={eachData.delta}/></td>
+              <td>
+                <ViewDelta delta={eachData.delta} />
+              </td>
             </tr>
           ))}
+          <tr
+            style={{
+              textAlign: "center",
+              color: "grey",
+              fontSize: "18px",
+              borderBottom: "1px solid rgba(255, 0, 0, 0.2)",
+              height: "60px",
+            }}
+          >
+            <td><b>Total:</b> </td>
+            <td>{this.getTotalSalary(data)}</td>
+            <td><ViewDelta delta={this.getTotalDelta(data)} /></td>
+          </tr>
         </table>
       </>
     );

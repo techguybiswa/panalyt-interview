@@ -58,6 +58,7 @@ class App extends React.Component<AppProps, AppState> {
   };
   componentDidMount = () => {
     let locationMapOnSalary = convertToLocationMap(EmployeeData);
+    console.log("locationMapOnSalary " , locationMapOnSalary)
     let locationMapWithDelta = calculateDelta(locationMapOnSalary);
     let locationWiseDataArray = convertToArray(locationMapWithDelta);
     let listOfFilters = getFilters(locationWiseDataArray);

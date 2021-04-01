@@ -67,3 +67,22 @@ export const getFilters = (
   let filters = locationWiseDataArray.map((eachData) => eachData.location);
   return filters;
 };
+
+
+export const getTotalSalary = (data : Array<EmployeeDataObject>) => {
+  let totalSalary = 0;
+  data.map((eachData) => {
+    totalSalary += eachData.currSalary;
+  });
+  totalSalary = parseFloat(totalSalary.toFixed(2))
+  return `$${totalSalary.toLocaleString("en-US")}`;
+};
+
+export const getTotalDelta = (data : Array<EmployeeDataObject>) => {
+  let totalDelta = 0;
+  data.map((eachData) => {
+    totalDelta += eachData.delta || 0;
+  });
+
+  return parseFloat(totalDelta.toFixed(2));
+};

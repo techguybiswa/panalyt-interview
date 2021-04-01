@@ -1,4 +1,11 @@
-import { convertToLocationMap, calculateDelta, convertToArray, getFilters } from "./utils";
+import {
+  convertToLocationMap,
+  calculateDelta,
+  convertToArray,
+  getFilters,
+  getTotalSalary,
+  getTotalDelta,
+} from "./utils";
 test("convert to map", () => {
   let testJsonData = [
     {
@@ -105,21 +112,62 @@ test("convert to array", () => {
   expect(convertToArray(testMapData)).toStrictEqual(resultArray);
 });
 
-test("get filters" , () => {
-    let testArray =  [
-        {
-          location: "Philippines",
-          prevSalary: 25.1,
-          currSalary: 30.3,
-          delta: 20.72,
-        },
-        {
-          location: "China",
-          prevSalary: 30.2,
-          currSalary: 60.1,
-          delta: 99,
-        },
-      ];
-    let resultFilterArray = ["Philippines" , "China" ]
-    expect(getFilters(testArray)).toStrictEqual(resultFilterArray) 
-})
+test("get filters", () => {
+  let testArray = [
+    {
+      location: "Philippines",
+      prevSalary: 25.1,
+      currSalary: 30.3,
+      delta: 20.72,
+    },
+    {
+      location: "China",
+      prevSalary: 30.2,
+      currSalary: 60.1,
+      delta: 99,
+    },
+  ];
+  let resultFilterArray = ["Philippines", "China"];
+  expect(getFilters(testArray)).toStrictEqual(resultFilterArray);
+});
+
+test("calculate total salary", () => {
+  let testArray = [
+    {
+      location: "Philippines",
+      prevSalary: 25.1,
+      currSalary: 30.312,
+      delta: 20.72,
+    },
+    {
+      location: "China",
+      prevSalary: 30.2,
+      currSalary: 60.1,
+      delta: 99,
+    },
+  ];
+
+  let resultTotalSalary = "$90.41";
+
+  expect(getTotalSalary(testArray)).toBe(resultTotalSalary);
+});
+
+test("calculate total delta", () => {
+  let testArray = [
+    {
+      location: "Philippines",
+      prevSalary: 25.1,
+      currSalary: 30.312,
+      delta: -2.72,
+    },
+    {
+      location: "China",
+      prevSalary: 30.2,
+      currSalary: 60.1,
+      delta: 9,
+    },
+  ];
+  let resultTotalDelta = 6.28;
+
+  expect(getTotalDelta(testArray)).toBe(resultTotalDelta);
+});

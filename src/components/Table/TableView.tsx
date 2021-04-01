@@ -1,6 +1,7 @@
 import * as React from "react";
 import { EmployeeDataObject } from "../../App";
 import ViewDelta from "./ViewDelta";
+import {getTotalSalary, getTotalDelta} from "../../utils/utils"
 export interface TableViewProps {
   data: Array<EmployeeDataObject>;
 }
@@ -14,23 +15,7 @@ class TableView extends React.Component<TableViewProps, TableViewState> {
     super(props);
     this.state = { title: "This is table" };
   }
-  getTotalSalary = (data : Array<EmployeeDataObject>) => {
-    let totalSalary = 0;
-    data.map((eachData) => {
-      totalSalary += eachData.currSalary;
-    });
-    totalSalary = parseFloat(totalSalary.toFixed(2))
-    return `$${totalSalary.toLocaleString("en-US")}`;
-  };
 
-  getTotalDelta = (data : Array<EmployeeDataObject>) => {
-    let totalDelta = 0;
-    data.map((eachData) => {
-      totalDelta += eachData.delta || 0;
-    });
-  
-    return parseFloat(totalDelta.toFixed(2));
-  };
   render() {
     const {data} = this.props;
     return (
@@ -77,8 +62,8 @@ class TableView extends React.Component<TableViewProps, TableViewState> {
             }}
           >
             <td><b>Total:</b> </td>
-            <td>{this.getTotalSalary(data)}</td>
-            <td><ViewDelta delta={this.getTotalDelta(data)} /></td>
+            <td>{getTotalSalary(data)}</td>
+            <td><ViewDelta delta={getTotalDelta(data)} /></td>
           </tr>
         </table>
       </>

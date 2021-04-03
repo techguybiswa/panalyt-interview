@@ -64,12 +64,12 @@ export const convertToArray = (locationWiseDataMap: MapOfLocation) => {
 export const getFilters = (
   locationWiseDataArray: Array<EmployeeDataObject>
 ) => {
-  let filters = locationWiseDataArray.map((eachData) => eachData.location);
+  let filters = locationWiseDataArray.map(({location}) => location);
   return filters;
 };
 
 export const getTotalSalary = (data: Array<EmployeeDataObject>) => {
-  let totalSalary = data.reduce((accumulator: number, {currSalary} : {currSalary : number}) => {
+  let totalSalary = data.reduce((accumulator: number, {currSalary}) => {
       return accumulator + currSalary;
   }, 0);
   totalSalary = parseFloat(totalSalary.toFixed(2));
@@ -77,7 +77,7 @@ export const getTotalSalary = (data: Array<EmployeeDataObject>) => {
 };
 
 export const getTotalDelta = (data: Array<EmployeeDataObject>) => {
-  let totalDelta = data.reduce((accumulator: number, {delta}: {delta?: number}) => {
+  let totalDelta = data.reduce((accumulator: number, {delta}) => {
     if(delta != undefined) {
       return accumulator + delta;
     }

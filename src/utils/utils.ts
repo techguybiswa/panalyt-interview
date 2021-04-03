@@ -69,18 +69,20 @@ export const getFilters = (
 };
 
 export const getTotalSalary = (data: Array<EmployeeDataObject>) => {
-  let totalSalary = data.reduce((accumulator, eachData) => {
-    return accumulator + eachData.currSalary;
+  let totalSalary = data.reduce((accumulator: number, {currSalary} : {currSalary : number}) => {
+      return accumulator + currSalary;
   }, 0);
   totalSalary = parseFloat(totalSalary.toFixed(2));
   return `$${totalSalary.toLocaleString("en-US")}`;
 };
 
 export const getTotalDelta = (data: Array<EmployeeDataObject>) => {
-  let totalDelta = 0;
-  data.map((eachData) => {
-    totalDelta += eachData.delta || 0;
-  });
+  let totalDelta = data.reduce((accumulator: number, {delta}: {delta?: number}) => {
+    if(delta != undefined) {
+      return accumulator + delta;
+    }
+    return 0
+  }, 0);
 
   return parseFloat(totalDelta.toFixed(2));
 };

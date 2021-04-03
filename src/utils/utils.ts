@@ -69,10 +69,9 @@ export const getFilters = (
 };
 
 export const getTotalSalary = (data: Array<EmployeeDataObject>) => {
-  let totalSalary = 0;
-  data.map((eachData) => {
-    totalSalary += eachData.currSalary;
-  });
+  let totalSalary = data.reduce((accumulator, eachData) => {
+    return accumulator + eachData.currSalary;
+  }, 0);
   totalSalary = parseFloat(totalSalary.toFixed(2));
   return `$${totalSalary.toLocaleString("en-US")}`;
 };

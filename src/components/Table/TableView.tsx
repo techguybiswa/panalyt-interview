@@ -46,6 +46,7 @@ class TableView extends React.Component<TableViewProps, TableViewState> {
                 border-bottom: 1px solid rgba(255, 0, 0, 0.2);
                 height: 60px;
               `}
+              key={eachData.location}
             >
               <td>{eachData.location}</td>
               <td>${eachData.currSalary.toLocaleString("en-US")}</td>

@@ -7,9 +7,6 @@ export interface LayoutProps {
 }
 
 class AppLayout extends React.Component<LayoutProps> {
-  constructor(props: LayoutProps) {
-    super(props);
-  }
   render() {
     return (
       <>

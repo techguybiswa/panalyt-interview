@@ -13,27 +13,34 @@ export interface DataObjectInJson {
 }
 
 export const convertToLocationMap = (jsonData: Array<DataObjectInJson>) => {
-  let mapOfLocation: MapOfLocation = {};
-  jsonData.map((eachData) => {
-    let prevSalary = getSalaryInNumber(eachData.prevSalary);
-    let currSalary = getSalaryInNumber(eachData.currSalary);
-    if (mapOfLocation.hasOwnProperty(eachData.location)) {
-      mapOfLocation[eachData.location].prevSalary += prevSalary;
-      mapOfLocation[eachData.location].currSalary += currSalary;
-    } else {
-      let salaryDataObj = {
-        location: eachData.location,
-        prevSalary,
-        currSalary,
-      };
-      mapOfLocation[eachData.location] = salaryDataObj;
-    }
-  });
-  return mapOfLocation;
+  let locationMap: MapOfLocation = jsonData.reduce(
+    (mapOfLocation: MapOfLocation, eachData) => {
+      let prevSalary = getSalaryInNumber(eachData.prevSalary);
+      let currSalary = getSalaryInNumber(eachData.currSalary);
+      if (mapOfLocation.hasOwnProperty(eachData.location)) {
+        mapOfLocation[eachData.location].prevSalary += getSalaryInNumber(
+          eachData.prevSalary
+        );
+        mapOfLocation[eachData.location].currSalary += getSalaryInNumber(
+          eachData.currSalary
+        );
+      } else {
+        let salaryDataObj = {
+          location: eachData.location,
+          prevSalary,
+          currSalary,
+        };
+        mapOfLocation[eachData.location] = salaryDataObj;
+      }
+      return mapOfLocation;
+    },
+    {}
+  );
+  return locationMap;
 };
 
 export const calculateDelta = (locationWiseDataMap: MapOfLocation) => {
-  Object.keys(locationWiseDataMap).map((eachLocation) => {
+  Object.keys(locationWiseDataMap).forEach((eachLocation) => {
     let { currSalary, prevSalary } = locationWiseDataMap[eachLocation];
     let delta = calculatePercentageChange(currSalary, prevSalary);
     locationWiseDataMap[eachLocation] = {
@@ -46,7 +53,7 @@ export const calculateDelta = (locationWiseDataMap: MapOfLocation) => {
 
 export const convertToArray = (locationWiseDataMap: MapOfLocation) => {
   let employeeDataArray: Array<EmployeeDataObject> = [];
-  Object.keys(locationWiseDataMap).map((eachLocation) => {
+  Object.keys(locationWiseDataMap).forEach((eachLocation) => {
     let { location, currSalary, prevSalary, delta } = locationWiseDataMap[
       eachLocation
     ];
@@ -64,24 +71,24 @@ export const convertToArray = (locationWiseDataMap: MapOfLocation) => {
 export const getFilters = (
   locationWiseDataArray: Array<EmployeeDataObject>
 ) => {
-  let filters = locationWiseDataArray.map(({location}) => location);
+  let filters = locationWiseDataArray.map(({ location }) => location);
   return filters;
 };
 
 export const getTotalSalary = (data: Array<EmployeeDataObject>) => {
-  let totalSalary = data.reduce((accumulator: number, {currSalary}) => {
-      return accumulator + currSalary;
+  let totalSalary = data.reduce((accumulator: number, { currSalary }) => {
+    return accumulator + currSalary;
   }, 0);
   totalSalary = parseFloat(totalSalary.toFixed(2));
   return `$${totalSalary.toLocaleString("en-US")}`;
 };
 
 export const getTotalDelta = (data: Array<EmployeeDataObject>) => {
-  let totalDelta = data.reduce((accumulator: number, {delta}) => {
-    if(delta != undefined) {
+  let totalDelta = data.reduce((accumulator: number, { delta }) => {
+    if (delta !== undefined) {
       return accumulator + delta;
     }
-    return 0
+    return 0;
   }, 0);
 
   return parseFloat(totalDelta.toFixed(2));

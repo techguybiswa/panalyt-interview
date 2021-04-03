@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Checkbox, Row, Col, Button } from "antd";
+import { Checkbox, Row, Col } from "antd";
 
 export interface FiltersProps {
   filters: Array<string>;
@@ -26,7 +26,7 @@ class Filters extends React.Component<FiltersProps, FiltersState> {
         <Checkbox.Group style={{ width: "100%" }} onChange={this.onChange}>
           <Row>
             {this.props.filters.map((eachFilter) => (
-              <Col span={8}>
+              <Col span={8}  key={eachFilter}>
                 <Checkbox value={eachFilter}>{eachFilter}</Checkbox>
               </Col>
             ))}

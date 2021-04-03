@@ -4,7 +4,6 @@ import { CustomTooltip } from "./CustomTooltip";
 import {
   BarChart,
   Bar,
-  Cell,
   XAxis,
   YAxis,
   CartesianGrid,

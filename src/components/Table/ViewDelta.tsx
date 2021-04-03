@@ -9,10 +9,6 @@ export interface ViewDeltaProps {
 export interface ViewDeltaState {}
 
 class ViewDelta extends React.Component<ViewDeltaProps, ViewDeltaState> {
-  constructor(props: ViewDeltaProps) {
-    super(props);
-  }
-
   render() {
     const { delta } = this.props;
 

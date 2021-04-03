@@ -45,7 +45,7 @@ class App extends React.Component<AppProps, AppState> {
     if (selectedFilters.length) {
       let filteredLocationWiseDataArray = this.state.locationWiseDataArray.filter(
         (eachData) => {
-          return selectedFilters.indexOf(eachData.location) != -1;
+          return selectedFilters.indexOf(eachData.location) !== -1;
         }
       );
       this.setState({

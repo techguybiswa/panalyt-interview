@@ -11,10 +11,10 @@ export const isValidSalaryString = (salary: string) => {
   if (salary[0] !== "$") {
     return false;
   }
-  let regEx =  /^-{0,1}\d*\.{0,1}\d+$/
+  let regEx = /^-{0,1}\d*\.{0,1}\d+$/;
   let numericalSalary = salary.slice(1);
-  let isValid = regEx.test(numericalSalary)
-  return isValid
+  let isValid = regEx.test(numericalSalary);
+  return isValid;
 };
 export const calculatePercentageChange = (
   currSalary: number,
@@ -28,7 +28,7 @@ export const calculatePercentageChange = (
 };
 
 export const getSign = (delta?: number) => {
-  if (delta == undefined) {
+  if (delta === undefined) {
     return null;
   }
   if (delta >= 0) {
@@ -37,10 +37,10 @@ export const getSign = (delta?: number) => {
   return "";
 };
 export const getBackgroundColor = (delta?: number) => {
-  if (delta == undefined) {
+  if (delta === undefined) {
     return "";
   }
-  if (delta == 0) {
+  if (delta === 0) {
     return "yellow";
   } else if (delta < 0) {
     return "#FFA500";

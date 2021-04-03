@@ -11,9 +11,9 @@ export const isValidSalaryString = (salary: string) => {
   if (salary[0] !== "$") {
     return false;
   }
-  let regEx = /^-{0,1}\d*\.{0,1}\d+$/;
+  let regExToTestForNumber = /^-{0,1}\d*\.{0,1}\d+$/;
   let numericalSalary = salary.slice(1);
-  let isValid = regEx.test(numericalSalary);
+  let isValid = regExToTestForNumber.test(numericalSalary);
   return isValid;
 };
 export const calculatePercentageChange = (
